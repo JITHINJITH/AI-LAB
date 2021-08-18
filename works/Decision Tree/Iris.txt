@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+
+x = iris.data
+
+y = iris.target
+
+from sklearn.tree import DecisionTreeClassifier
+ml = DecisionTreeClassifier()
+
+ml = ml.fit(x,y)
+
+op = ml.predict([[3.5,4.5,5.5,6.5]])
+op
+
+import graphviz
+
+fn = iris.feature_names
+
+cn = iris.target_names
+
+from sklearn.tree import export_graphviz
+
+
+dot_data = export_graphviz(ml,feature_names = fn ,class_names = cn,filled = True,rounded = True)
+
+
+graph = graphviz.Source(dot_data)
+graph.render('tree_iris')

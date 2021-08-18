@@ -1,0 +1,38 @@
+# Importing Libraries
+
+import numpy as np
+import pandas as pd
+
+#Loading dataset
+
+iris=pd.read_csv('iris.csv')
+iris.head(10)
+
+x=iris[['sepal_length','sepal_width','petal_length','petal_width']]
+y=iris['species']
+
+x
+
+y
+
+#building MOdel
+
+from sklearn.svm import SVC
+ML=SVC()
+
+#fitting Data
+
+ML=ML.fit(x,y)
+
+#trial output
+op=ML.predict([[3.7, 4.9, 5.2, 3.3]])
+op
+
+op1=ML.predict([[2.5, 3.8, 4.6, 5.2]])
+op1
+
+op2=ML.predict([[2.7, 3.8, 4.8, 5.2]])
+op2
+
+op3=ML.predict([[2.9, 3.8, 5.0, 5.2]])
+op3

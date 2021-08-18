@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+
+from sklearn.datasets import load_wine
+
+wine = load_wine()
+
+x = wine.data
+
+y = wine.target
+
+
+from sklearn.tree import DecisionTreeClassifier
+ml = DecisionTreeClassifier()
+
+ml = ml.fit(x,y)
+
+op = ml.predict(np.random.rand(1,13))
+op
+
+
+
+import graphviz
+
+fn = wine.feature_names
+
+cn = wine.target_names
+
+from sklearn.tree import export_graphviz
+
+
+dot_data = export_graphviz(ml,feature_names = fn ,class_names = cn,filled = True,rounded = True)
+
+
+graph = graphviz.Source(dot_data)
+graph.render('tree_wine')

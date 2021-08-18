@@ -1,0 +1,51 @@
+import numpy as np
+import pandas as pd
+train = pd.read_csv('/train.csv')
+test = pd.read_csv('/content/test.csv')
+x_train=train[['Age',  'Flight Distance', 'Inflight wifi service', 'Ease of Online booking', 'Food and drink', 'Seat comfort', 'Leg room service', 'Cleanliness','Departure Delay in Minutes', 'Arrival Delay in Minutes']]
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values = np.nan, strategy ='mean')
+imputer.fit(x_train)
+x_train = imputer.transform(x_train)
+
+y_train=train['satisfaction']
+x_test=test[['Age',  'Flight Distance', 'Inflight wifi service', 'Ease of Online booking', 'Food and drink', 'Seat comfort', 'Leg room service', 'Cleanliness','Departure Delay in Minutes', 'Arrival Delay in Minutes']]
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values = np.nan, strategy ='mean')
+imputer.fit(x_test)
+x_test = imputer.transform(x_test)
+y_test = test['satisfaction']
+
+
+
+from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import BernoulliNB
+ML1=GaussianNB()
+ML2 = MultinomialNB()
+ML3 = BernoulliNB()
+
+
+ML1 =ML1.fit(x_train,y_train)
+ML2 =ML2.fit(x_train,y_train)
+ML3 =ML3.fit(x_train,y_train)
+
+
+op1 = ML1.predict(x_test)  #using GaussianNB
+from sklearn.metrics import accuracy_score
+accuracy1 = accuracy_score(op1,y_test)
+accuracy1
+
+
+op2 = ML2.predict(x_test) #using MultinomialNB
+from sklearn.metrics import accuracy_score
+accuracy2 = accuracy_score(op2,y_test)
+accuracy2
+
+
+op3 = ML3.predict(x_test)  #using BernoulliNB
+from sklearn.metrics import accuracy_score
+accuracy3 = accuracy_score(op3,y_test)
+accuracy3

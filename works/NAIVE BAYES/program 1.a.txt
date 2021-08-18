@@ -1,0 +1,24 @@
+import numpy as np
+import pandas as pd
+
+from sklearn.datasets import load_iris
+iris = load_iris()
+x=iris.data
+y=iris.target
+from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import BernoulliNB
+
+ML1=GaussianNB()
+ML2 = MultinomialNB()
+ML3 = BernoulliNB()
+
+ML1 =ML1.fit(x,y)
+ML2 =ML2.fit(x,y)
+ML3 =ML3.fit(x,y)
+op1 = ML1.predict([[3.5,3.5,3.5,3.5 ]]) #using GaussianNB
+op1
+op2 = ML2.predict([[3.5,3.5,3.5,3.5 ]]) #using MultinomialNB
+op2
+op3 = ML3.predict([[3.5,3.5,3.5,3.5 ]]) #using BernoulliNB
+op3

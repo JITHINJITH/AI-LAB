@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+
+heart=pd.read_csv('heart.csv')
+heart.head(10)
+
+x=heart[['trtbps','chol','thalachh','oldpeak']]
+x.head(10)
+
+y=heart['output']
+y.head(10)
+
+from sklearn.svm import SVC
+ML=SVC()
+ML=ML.fit(x,y)
+
+op=ML.predict([[ 130, 240, 120, 3.7]])
+print(op)
+
+from sklearn.naive_bayes import GaussianNB
+ML=GaussianNB()
+ML=ML.fit(x,y)
+
+op=ML.predict([[ 130, 240, 120, 3.7]])
+print(op)
+
